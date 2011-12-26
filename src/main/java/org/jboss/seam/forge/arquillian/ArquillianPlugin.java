@@ -153,39 +153,39 @@ public class ArquillianPlugin implements Plugin {
 
     private void installJunitDependencies() {
         DependencyBuilder junitDependency = createJunitDependency();
-        if (!dependencyFacet.hasDependency(junitDependency)) {
+        if (!dependencyFacet.hasDirectDependency(junitDependency)) {
             List<Dependency> dependencies = dependencyFacet.resolveAvailableVersions(junitDependency);
             Dependency dependency = shell.promptChoiceTyped("Which version of JUnit do you want to install?", dependencies);
-            dependencyFacet.addDependency(dependency);
+            dependencyFacet.addDirectDependency(dependency);
         }
 
         DependencyBuilder junitArquillianDependency = createJunitArquillianDependency();
-        if (!dependencyFacet.hasDependency(junitArquillianDependency)) {
+        if (!dependencyFacet.hasDirectDependency(junitArquillianDependency)) {
             List<Dependency> dependencies = dependencyFacet.resolveAvailableVersions(junitArquillianDependency);
             Dependency dependency = shell.promptChoiceTyped("Which version of Arquillian do you want to install?", dependencies, dependencies.get(dependencies.size() - 1));
             arquillianVersion = dependency.getVersion();
-            dependencyFacet.addDependency(dependency);
+            dependencyFacet.addDirectDependency(dependency);
         } else {
-            arquillianVersion = dependencyFacet.getDependency(junitArquillianDependency).getVersion();
+            arquillianVersion = dependencyFacet.getDirectDependency(junitArquillianDependency).getVersion();
         }
     }
 
     private void installTestNgDependencies() {
         DependencyBuilder testngDependency = createTestNgDependency();
-        if (!dependencyFacet.hasDependency(testngDependency)) {
+        if (!dependencyFacet.hasDirectDependency(testngDependency)) {
             List<Dependency> dependencies = dependencyFacet.resolveAvailableVersions(testngDependency);
             Dependency dependency = shell.promptChoiceTyped("Which version of TestNG do you want to install?", dependencies);
-            dependencyFacet.addDependency(dependency);
+            dependencyFacet.addDirectDependency(dependency);
         }
 
         DependencyBuilder testNgArquillianDependency = createTestNgArquillianDependency();
-        if (!dependencyFacet.hasDependency(testNgArquillianDependency)) {
+        if (!dependencyFacet.hasDirectDependency(testNgArquillianDependency)) {
             List<Dependency> dependencies = dependencyFacet.resolveAvailableVersions(testNgArquillianDependency);
             Dependency dependency = shell.promptChoiceTyped("Which version of Arquillian do you want to install?", dependencies, dependencies.get(dependencies.size() - 1));
             arquillianVersion = dependency.getVersion();
-            dependencyFacet.addDependency(dependency);
+            dependencyFacet.addDirectDependency(dependency);
         } else {
-            arquillianVersion = dependencyFacet.getDependency(testNgArquillianDependency).getVersion();
+            arquillianVersion = dependencyFacet.getDirectDependency(testNgArquillianDependency).getVersion();
         }
     }
 
